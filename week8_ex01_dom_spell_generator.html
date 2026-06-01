@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Magical Spell Generator</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+        background-color: #f0f4f8;
+        padding: 20px;
+      }
+      #spellArea {
+        margin: 20px auto;
+        padding: 30px;
+        width: 300px;
+        min-height: 80px;
+        border: 2px dashed #4a5568;
+        border-radius: 10px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color 0.5s ease;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        margin: 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        border: none;
+        background-color: #4a5568;
+        color: white;
+        transition: opacity 0.2s;
+      }
+      button:hover {
+        opacity: 0.9;
+      }
+      #resetButton {
+        background-color: #e53e3e;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      li {
+        background: #fff;
+        margin: 5px auto;
+        padding: 8px;
+        width: 200px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome to the Magical Spell Generator!</h1>
+    <div id="spellArea">Your spell will appear here...</div>
+
+    <button id="generateButton">Generate Spell</button>
+    <button id="resetButton">Reset</button>
+    <h3>Available Ingredients:</h3>
+    <ul id="ingredientsList">
+      <li>Dragon Scale</li>
+      <li>Phoenix Feather</li>
+      <li>Unicorn Horn</li>
+    </ul>
+
+    <script>
+      // DOM Elements
+      const generateButton = document.getElementById("generateButton");
+      const resetButton = document.getElementById("resetButton");
+      const spellArea = document.getElementById("spellArea");
+      const ingredientsItems = document.querySelectorAll("#ingredientsList li");
+
+      // Helper function to generate a random RGB color (Task 4)
+      function getRandomColor() {
+        const r = Math.floor(Math.random() * 156) + 100; // Keeping them a bit lighter/pastel
+        const g = Math.floor(Math.random() * 156) + 100;
+        const b = Math.floor(Math.random() * 156) + 100;
+        return `rgb(${r}, ${g}, ${b})`;
+      }
+
+      // Task 3 & 5: Make the Button Work with a Countdown
+      generateButton.addEventListener("click", () => {
+        // Disable button during countdown to prevent overlapping clicks
+        generateButton.disabled = true;
+
+        let countdown = 3;
+        spellArea.style.backgroundColor = "#e2e8f0"; // Neutral color during countdown
+        spellArea.innerText = countdown;
+
+        const timer = setInterval(() => {
+          countdown--;
+          if (countdown > 0) {
+            spellArea.innerText = countdown;
+          } else {
+            clearInterval(timer);
+
+            // Task 3: Randomly select an ingredient
+            const randomIndex = Math.floor(
+              Math.random() * ingredientsItems.length,
+            );
+            const chosenIngredient = ingredientsItems[randomIndex].innerText;
+
+            // Display the spell
+            spellArea.innerText = `✨ Conjured: ${chosenIngredient}! ✨`;
+
+            // Task 4: Change background color
+            spellArea.style.backgroundColor = getRandomColor();
+
+            // Re-enable button
+            generateButton.disabled = false;
+          }
+        }, 1000);
+      });
+
+      // Task 6: Reset Button Functionality
+      resetButton.addEventListener("click", () => {
+        spellArea.innerText = "Your spell will appear here...";
+        spellArea.style.backgroundColor = ""; // Resets to default CSS background
+        generateButton.disabled = false;
+      });
+    </script>
+  </body>
+</html>
