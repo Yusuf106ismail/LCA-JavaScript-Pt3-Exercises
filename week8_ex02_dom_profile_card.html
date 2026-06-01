@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Profile Card</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f3f4f6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      /* Task 1: Styling the baseline profile card */
+      #profileCard {
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 24px;
+        width: 320px;
+        text-align: center;
+        transition: all 0.3s ease;
+        border: 3px solid transparent;
+      }
+
+      #profileImage {
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #e5e7eb;
+      }
+
+      #profileName {
+        margin: 12px 0 4px 0;
+        color: #1f2937;
+      }
+
+      #profileRole {
+        margin: 0 0 12px 0;
+        color: #4b5563;
+        font-weight: 600;
+        font-size: 0.95rem;
+      }
+
+      #profileBio {
+        color: #6b7280;
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 20px;
+      }
+
+      .button-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      button {
+        padding: 8px 12px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 500;
+        background-color: #e5e7eb;
+        color: #374151;
+        transition: background-color 0.2s;
+      }
+
+      button:hover {
+        background-color: #d1d5db;
+      }
+
+      #toggleStatusBtn {
+        background-color: #3b82f6;
+        color: white;
+      }
+
+      #toggleStatusBtn:hover {
+        background-color: #2563eb;
+      }
+
+      /* Task 3: Active Status CSS Class */
+      #profileCard.active-status {
+        background-color: #ecfdf5;
+        border-color: #10b981;
+        box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="profileCard">
+      <img
+        id="profileImage"
+        src="https://placehold.co/100x100"
+        alt="Profile Picture"
+        width="100"
+        height="100"
+      />
+      <h2 id="profileName">John Doe</h2>
+      <p id="profileRole">Software Developer</p>
+      <p id="profileBio">
+        Passionate about coding and learning new technologies.
+      </p>
+
+      <div class="button-group">
+        <button id="updateNameBtn">Update Name</button>
+        <button id="updateRoleBtn">Update Role</button>
+        <button id="changeImageBtn">Change Image</button>
+        <button id="toggleStatusBtn">Toggle Active Status</button>
+      </div>
+    </div>
+
+    <script>
+      // DOM Elements
+      const profileCard = document.getElementById("profileCard");
+      const profileImage = document.getElementById("profileImage");
+      const profileName = document.getElementById("profileName");
+      const profileRole = document.getElementById("profileRole");
+
+      const updateNameBtn = document.getElementById("updateNameBtn");
+      const updateRoleBtn = document.getElementById("updateRoleBtn");
+      const changeImageBtn = document.getElementById("changeImageBtn");
+      const toggleStatusBtn = document.getElementById("toggleStatusBtn");
+
+      // Task 2: Update Name
+      updateNameBtn.addEventListener("click", () => {
+        const newName = prompt("Enter a new name:", profileName.textContent);
+        // Check if user didn't hit cancel and didn't leave it completely empty
+        if (newName !== null && newName.trim() !== "") {
+          profileName.textContent = newName.trim();
+        }
+      });
+
+      // Task 2: Update Role
+      updateRoleBtn.addEventListener("click", () => {
+        const newRole = prompt("Enter a new role:", profileRole.textContent);
+        if (newRole !== null && newRole.trim() !== "") {
+          profileRole.textContent = newRole.trim();
+        }
+      });
+
+      // Task 3: Toggle Active Status
+      toggleStatusBtn.addEventListener("click", () => {
+        profileCard.classList.toggle("active-status");
+      });
+
+      // Task 4: Change Profile Image (Bonus)
+      changeImageBtn.addEventListener("click", () => {
+        const newImgUrl = prompt("Enter a new image URL:", profileImage.src);
+        if (newImgUrl !== null && newImgUrl.trim() !== "") {
+          profileImage.src = newImgUrl.trim();
+        }
+      });
+    </script>
+  </body>
+</html>
