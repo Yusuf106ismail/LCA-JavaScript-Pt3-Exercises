@@ -1,0 +1,53 @@
+/* Typography Customizations */
+.tracking-wider {
+  letter-spacing: 0.05em;
+}
+
+.fs-7 {
+  font-size: 0.75rem;
+}
+
+/* Developer Card Presentation Architecture */
+.dev-card {
+  transition:
+    transform 0.2s cubic-bezier(0.165, 0.84, 0.44, 1),
+    box-shadow 0.2s ease-in-out;
+  border-left: 4px solid #6c757d;
+}
+
+.dev-card.is-hirable {
+  border-left: 4px solid #198754;
+}
+
+.dev-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Skill Badge Pills Layout overrides */
+.skill-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background-color: #f1f3f5;
+  color: #495057;
+  border: 1px solid #dee2e6;
+}
+
+/* Custom interactive inputs styling tweaks */
+.form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+}
+
+.form-check-input:checked {
+  background-color: #198754;
+  border-color: #198754;
+}
+
+/* Responsive Table alignment overrides */
+.table th {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #6c757d;
+}
